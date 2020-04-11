@@ -8,10 +8,12 @@ export default function Table() {
     const handleTableHeaderClick = (id) => {
         console.log(id);
     }
-    console.log(data)
 
+    const eventContext = {
+        onTableHeaderClick: handleTableHeaderClick
+    }
     return (
-        <EventContext.Provider>
+        <EventContext.Provider value ={eventContext}>
             <table border=".5">
                 <thead>
                     <tr>
