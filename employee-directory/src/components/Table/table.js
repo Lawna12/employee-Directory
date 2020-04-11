@@ -1,29 +1,38 @@
 import React from "react";
 import data from "../../data.json"
+import { TableRow } from "./subComponent/Row/tableRow";
+import TableHeader from "./subComponent/tableHeader/tableHeader";
 
 export default function Table() {
     console.log(data)
+
     return (
         <table border=".5">
             <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>City</th>
-                    <th>Email</th>
-                    <th>DOB</th>
+                    <TableHeader 
+                        text="Name"
+                    />
+                    <TableHeader 
+                        text="Email"
+                    />
+                    <TableHeader 
+                        text="Phone"
+                    />
+                    <TableHeader 
+                        text="Nationality"
+                    />
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Image</td>
-                    <td>John Doe</td>
-                    <td>860-5555-5555</td>
-                    <td>Houston</td>
-                    <td>john@john.doe</td>
-                    <td>03-25-1985</td>
-                </tr>
+                {
+                    data.map((person) => (
+                          <TableRow
+                                key={person.phone}
+                                person={person}
+                          />
+                    ))
+                }
             </tbody>
         </table>
     )
