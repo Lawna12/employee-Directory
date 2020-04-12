@@ -3,10 +3,13 @@ import data from "../../data.json"
 import TableRow  from "./subComponent/TableRow/tableRow";
 import TableHeader from "./subComponent/TableHeader/tableHeader";
 import { EventContext, TableContext } from "./tableContexts";
+import { AppContext } from "../AppContexts";
 
 export default function Table() {
     const [sortBy, setSortBy] = React.useState();
     const [sortOrder, setSortOrder] = React.useState();
+
+    const { searchText } = React.useContext(AppContext);
 
     const handleTableHeaderClick = (event) => {
         const target = event.currentTarget
@@ -40,24 +43,30 @@ export default function Table() {
         onTableHeaderClick: handleTableHeaderClick
     }
 
-    let sortedData = [ ... data];
+    let toBeDisplayedData = [...data]
+
+    // Filter on email ONLY!!
+    if (searchText !== '') {
+        toBeDisplayedData = toBeDisplayedData.filter(({email}) => new RegExp(searchText, 'g').test(email));
+    }
+
     const sortOrderModifier = sortOrder === 'ASC' ? 1 : -1; 
     switch (sortBy){
         case "Name":
-            sortedData = sortedData.sort((a, b) => {
+            toBeDisplayedData = toBeDisplayedData.sort((a, b) => {
                 const aName = `${a.name.first} ${a.name.last}`;
                 const bName = `${b.name.first} ${b.name.last}`;
                 return aName.localeCompare(bName) * sortOrderModifier;
             })
             break;
         case "Email":
-            sortedData = sortedData.sort((a, b) => a.email.localeCompare(b.email) * sortOrderModifier)
+            toBeDisplayedData = toBeDisplayedData.sort((a, b) => a.email.localeCompare(b.email) * sortOrderModifier)
             break;
         case "Phone":
-            sortedData = sortedData.sort((a, b) => a.phone.localeCompare(b.phone) * sortOrderModifier)
+            toBeDisplayedData = toBeDisplayedData.sort((a, b) => a.phone.localeCompare(b.phone) * sortOrderModifier)
             break;
         case "Nationality":
-            sortedData = sortedData.sort((a, b) => a.nat.localeCompare(b.nat) * sortOrderModifier)
+            toBeDisplayedData = toBeDisplayedData.sort((a, b) => a.nat.localeCompare(b.nat) * sortOrderModifier)
             break;
         default:
             break;                        
@@ -87,7 +96,7 @@ export default function Table() {
                     </thead>
                     <tbody>
                         {
-                            sortedData.map((person) => (
+                            toBeDisplayedData.map((person) => (
                                 <TableRow
                                         key={person.phone}
                                         person={person}
