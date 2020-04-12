@@ -4,6 +4,7 @@ import Wrapper from "./components/Wrapper"
 import Table from "./components/Table/table";
 import SearchInput from "./components/SearchInput/searchInput";
 import { AppContext, EventContext } from "./components/AppContexts";
+import Main from "./pages/Main"
 
 export default function App() {
   const [searchText, setSearchText] = React.useState('');
@@ -28,8 +29,7 @@ export default function App() {
         <EventContext.Provider value={eventContext}>
           <div> 
               <Header />
-              <SearchInput />
-              <Table />
+              <Main />
           </div>
         </EventContext.Provider>
       </AppContext.Provider>
