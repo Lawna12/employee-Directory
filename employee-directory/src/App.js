@@ -1,8 +1,6 @@
 import React from "react";
 import Header from "./components/Header"
 import Wrapper from "./components/Wrapper"
-import Table from "./components/Table/table";
-import SearchInput from "./components/SearchInput/searchInput";
 import { AppContext, EventContext } from "./components/AppContexts";
 import Main from "./pages/Main"
 
