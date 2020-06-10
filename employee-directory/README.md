@@ -34,4 +34,4 @@ Sort the table by at least one category
 
 Filter the users by at least one property.
 
-![Emp-scnShot](employee-directory/src/images/employee-directory.jpg)
+![liveShot](src/images/employee-directory.jpg)
