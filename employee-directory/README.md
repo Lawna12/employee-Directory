@@ -33,3 +33,5 @@ Sort the table by at least one category
 
 
 Filter the users by at least one property.
+
+![Emp-scnShot](https://github.com/Lawna12/employee-Directory/tree/master/employee-directory/src/images)
